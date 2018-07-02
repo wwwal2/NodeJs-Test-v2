@@ -12,7 +12,7 @@ var userInput = parsedYargs._[0];
 console.log('User input:', userInput);
 
 if (userInput === 'add') {
-    console.log('Note added');
+    helpFromHdd.addNote(parsedYargs.title, parsedYargs.body);
 } else if (userInput === 'remove') {
     console.log('Note removed');
 } else if (userInput === 'getNote') {
