@@ -48,8 +48,7 @@ let getNote = (title) => {
 };
 
 let getAll = () => {
-    let allNotes = duplicateCheck();
-    return allNotes;
+    return duplicateCheck();
 };
 
 module.exports = {

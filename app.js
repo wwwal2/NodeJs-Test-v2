@@ -4,8 +4,27 @@ const helpFromHdd = require('./notes.js');
 console.log(helpFromHdd);
 
 
+//tweaking yargs
 
-const parsedYargs = helpFromNPM.argv;
+const titleOptions = {
+    describe: 'Note title',
+    demand: true,
+    alias: 't'
+};
+const bodyOptions = {
+    describe: 'Text of note',
+    demand: true,
+    alias: 'b'
+};
+
+const parsedYargs = helpFromNPM
+    .command('add', 'Add a new note', {title: titleOptions, body: bodyOptions})
+    .command('remove', 'Removes the note', {title: titleOptions})
+    .command('getAll', 'Gets all notes')
+    .command('getNote', "Gets one selected note", {title: titleOptions})
+    .help()
+    .argv;
+
 console.log('Yargs: ', parsedYargs);
 
 let userInput = parsedYargs._[0];
@@ -28,7 +47,7 @@ if (userInput === 'add') {
 
 } else if (userInput === 'getAll') {
     let respondGA = helpFromHdd.getAll();
-    respondGA.forEach(function (item, i, arr) {console.log(i, item.title, item.body);});
+    respondGA.forEach((item, i, arr) => {console.log(i, item.title, item.body);});
 
 } else {
     console.log('No known command used');
